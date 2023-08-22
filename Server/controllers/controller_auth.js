@@ -3,6 +3,15 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const register = (req, res) => {
+  //check whether the entries are valid or not.
+  if (req.body.firstname.length <= 3) return res.status(500).json("Enter a valid firstname!");
+  if (req.body.lastname.length <= 3) return res.status(500).json("Enter a valid lastname!");
+  if (req.body.username.length <= 3) return res.status(500).json("Enter a valid username!");
+  if (req.body.email.length <= 3) return res.status(500).json("Enter a valid email!");
+  if (req.body.profession == "Default") return res.status(500).json("Choose your profession!");
+  if (req.body.userBio <= 15) return res.status(500).json("User Bio is too short!");
+  if (req.body.password <= 5) return res.status(500).json("Password is required!");
+
   // check whether password and confirm password are matching.
   if (req.body.password !== req.body.cpassword) return res.status(500).json("Password and confirm passwords are different!!");
 
@@ -17,8 +26,8 @@ export const register = (req, res) => {
     const salt = bcrypt.genSaltSync(process.env.SECRET_BCRYPT_SALT_CODE);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
-    QUERY = "INSERT INTO users(`firstname`, `lastname`, `username`, `email`, `profession`, `img`, `password`) VALUES (?)";
-    var values = [req.body.firstname, req.body.lastname, req.body.username, req.body.email, req.body.profession, req.body.img, hashedPassword];
+    QUERY = "INSERT INTO users(`firstname`, `lastname`, `username`, `email`, `profession`, `userBio`, `img`, `password`) VALUES (?)";
+    var values = [req.body.firstname, req.body.lastname, req.body.username, req.body.email, req.body.profession, req.body.userBio, req.body.img, hashedPassword];
 
     db.query(QUERY, [values], (err, data) => {
       if (err) return res.status(500).json(err);
@@ -29,6 +38,9 @@ export const register = (req, res) => {
 };
 
 export const login = (req, res) => {
+  if (req.body.username.length == 0) return res.status(500).json("Enter your username!");
+  if (req.body.password.length == 0) return res.status(500).json("Enter your password!");
+
   var QUERY = "SELECT * FROM users WHERE username = ?";
 
   db.query(QUERY, [req.body.username], (err, data) => {

@@ -1,9 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
-import default_image from "../assets/default_image.png";
+import Menu from "../components/Menu";
 // eslint-disable-next-line no-unused-vars
-import Footer from "../components/Footer";
+import defualt_image from "../assets/default_image.png";
+// import Footer from "../components/Footer";
 import { useContext, useState } from "react";
 import AuthContext from "../context/user/authContext.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -17,6 +18,9 @@ const Single = () => {
   // const [images, setImages] = useState({});
   const location = useLocation();
   const postId = location.pathname.split("/")[2];
+  // const category = location.search;
+
+  console.log(post.postImg);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -41,76 +45,57 @@ const Single = () => {
     navigate("/");
   };
 
-  const handleEdit = async () => {};
+  const handleEdit = async () => {
+    navigate(`/Write/?userid=${user.id}`, { state: post });
+  };
+
+  const getText = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent;
+  };
 
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center w-screen bg-slate-100 m-3 px-3 py-6">
-        <div className="flex flex-row justify-around bg-slate-200 w-4/5">
-          <h2 className="text-4xl font-bold bg-blue-300 rounded-full border-8 border-solid border-blue-200">BlogApp</h2>
-          <h2 className="flex items-center italic bg-slate-400">Made with love from Ansh.</h2>
+      <div className="flex flex-col items-center w-screen m-3 px-3 py-6">
+        <div className="flex flex-row bg-teal-400 justify-center w-4/5 py-20 border-2 border-black">
+          <h2 className="text-4xl font-bold bg-teal-400 rounded-full border-8 border-solid border-teal-200 p-3 mr-2">BlogApp</h2>
+          <h2 className="flex items-center italic text-bold text-lg text-teal-800">Made with love from Ansh.</h2>
         </div>
-        <div className="flex flex-row justify-start mt-2 min-w-full w-4/5 pt-2 pl-2 pb-2 bg-slate-200">
-          <div className="flex flex-col items-center w-2/6 h-fit pt-6 pl-2 pr-2 pb-6 bg-slate-300">
-            <img src={default_image} alt="UserPic" className="md:rounded-full ring-4 bg-slate-400 w-24 h-24 md:w-40 md:h-40" />
+        <div className="flex flex-row justify-start mt-2 min-w-full w-4/5 pt-2 pl-2 pb-2 bg-white shadow-xl">
+          <div className="flex flex-col items-center w-2/6 h-fit pt-6 pl-2 pr-2 pb-6 bg-teal-300">
+            <img src={`/uploads/${post.userImg}`} alt="UserPic" className="md:rounded-full ring-4 ring-teal-700 w-24 h-24 md:w-40 md:h-40" />
             <h2 className="mt-2 font-bold text-sm md:text-2xl">{post.firstname + " " + post.lastname}</h2>
             <span className="underline mt-2 text-xs md:text-sm italic">Joined: </span>
             <h4 className=" text-xs md:text-sm">{post.userDate}</h4>
-            <span className="underline mt-2 text-xs md:text-sm italic">Contact: </span>
-            <h4 className=" text-xs md:text-sm">+91-6386216706</h4>
+            <span className="underline mt-2 text-xs md:text-sm italic">Email: </span>
+            <h4 className=" text-xs md:text-sm">{post.email}</h4>
             <span className="underline mt-2 text-xs md:text-sm italic">Profession: </span>
             <h4 className=" text-xs md:text-sm">{post.profession}</h4>
             <span className="underline mt-2 text-xs md:text-sm italic">Bio: </span>
-            <h4 className=" text-xs md:text-sm text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut consequuntur amet tenetur? Nostrum consectetur nobis quod iusto. Debitis eveniet, aut, numquam, quidem consequuntur exercitationem amet accusamus blanditiis culpa similique inventore.</h4>
+            <h4 className=" text-xs md:text-sm text-center">{post.userBio}</h4>
           </div>
-          <div className="flex flex-col mt-1 mx-6 pt-4 pl-4 pr-4 w-full bg-slate-300 ">
+          <div className="flex flex-col mt-1 mx-6 pt-4 pl-4 pr-4 w-full bg-teal-50">
             {user !== null && user.username === post.username && (
               <div>
-                <h1 className="float-left italics">{moment(post.userDate).fromNow()}</h1>
-                <button onClick={handleDelete} className="float-right w-9 h-9 cursor-pointer mb-1 hover:bg-red-200 hover:ring-2 hover:ring-red-500 rounded-full">
-                  <i className="text-red-500 text-2xl fa-solid fa-trash "></i>
+                <h1 className="float-left italics bg-rose-300 py-1 px-2 mb-3 rounded-s-lg rounded-e-lg">{moment(post.postDate).fromNow()}</h1>
+                <button onClick={handleDelete} className="float-right w-9 h-9 cursor-pointer mb-1 hover:bg-rose-200 hover:ring-inset hover:ring-2 hover:ring-rose-500 rounded-full">
+                  <i className="text-rose-400 text-2xl fa-solid fa-trash "></i>
                 </button>
-                <button onClick={handleEdit} className="float-right w-9 h-9 cursor-pointer mb-1 ml-2 hover:bg-blue-200 hover:ring-2 hover:ring-blue-500 rounded-full">
-                  <i className="text-blue-500 text-2xl fa-solid fa-pencil "></i>
+                <button onClick={handleEdit} className="float-right w-9 h-9 cursor-pointer mb-1 ml-2 hover:bg-sky-200 hover:ring-inset hover:ring-2 hover:ring-sky-500 rounded-full">
+                  <i className="text-sky-400 text-2xl fa-solid fa-pencil "></i>
                 </button>
               </div>
             )}
-            <h1 className="text-4xl text-center font-bold mb-3">{post.title}</h1>
+            <h1 className="text-4xl text-center font-bold mb-3 bg-teal-300">{post.title}</h1>
             <p className="italic">
-              <img className="float-right w-36 h-36 md:w-64 md:h-64 bg-slate-300" src={default_image} alt="blogImage" />
-              {post.description}
+              <img className="float-right ml-1 shadow-2xl w-36 h-36 md:w-64 md:h-64 bg-slate-300" src={`/uploads/${post.postImg}`} alt="blogImage" />
+              {getText(post.description)}
             </p>
-          </div>
-        </div>
-        <div className="bg-slate-200 mt-3 w-full auto ring-2 ring-offset-2 ring-black text-center text-2xl text-black font-bold">Some More Posts....</div>
-        <div className="flex flex-row justify-evenly items-center bg-slate-200 mt-4 px-2 w-full h-96">
-          <div className="bg-slate-300 w-60 h-80 rounded-lg p-3">
-            <h1 className="text-sm md:text-lg w-full text-center font-bold bg-slate-400 mb-3">Post Title</h1>
-            <p className="text-xs italic md:text-sm mb-1 md:mb-4">
-              <img className="float-right w-10 h-10 md:w-20 md:h-20 bg-slate-300" src={default_image} alt="blogImage" />
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, animi? Eum id quod inventore reprehenderit repellendus odit soluta aut, doloremque quisquam recusandae dicta sit hic ipsam ex animi officiis aliquam minima optio eius! Odio vel eos aut, consequatur .
-            </p>
-            <button className="w-full py-2 rounded-lg bg-blue-300 text-center hover:ring-2 hover:ring-blue-400 cursor-pointer">Read More</button>
-          </div>
-          <div className="bg-slate-300 w-60 h-80 rounded-lg p-3">
-            <h1 className="text-sm md:text-lg text-lg w-full text-center font-bold bg-slate-400 mb-3">Post Title</h1>
-            <p className="text-xs italic md:text-sm mb-1 md:mb-4">
-              <img className="float-right w-10 h-10 md:w-20 md:h-20 bg-slate-300" src={default_image} alt="blogImage" />
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, animi? Eum id quod inventore reprehenderit repellendus odit soluta aut, doloremque quisquam recusandae dicta sit hic ipsam ex animi officiis aliquam minima optio eius! Odio vel eos aut, consequatur .
-            </p>
-            <button className="w-full py-2 rounded-lg bg-blue-300 text-center hover:ring-2 hover:ring-blue-400 cursor-pointer">Read More</button>
-          </div>
-          <div className="bg-slate-300 w-60 h-80 rounded-lg p-3">
-            <h1 className="text-sm md:text-lg text-lg w-full text-center font-bold bg-slate-400 mb-3">Post Title</h1>
-            <p className="text-xs italic md:text-sm mb-1 md:mb-4">
-              <img className="float-right w-10 h-10 md:w-20 md:h-20 bg-slate-300" src={default_image} alt="blogImage" />
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, animi? Eum id quod inventore reprehenderit repellendus odit soluta aut, doloremque quisquam recusandae dicta sit hic ipsam ex animi officiis aliquam minima optio eius! Odio vel eos aut, consequatur .
-            </p>
-            <button className="w-full py-2 rounded-lg bg-blue-300 text-center hover:ring-2 hover:ring-blue-400 cursor-pointer">Read More</button>
           </div>
         </div>
       </div>
+      <Menu />
       {/* <Footer /> */}
     </div>
   );
