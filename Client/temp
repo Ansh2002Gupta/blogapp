@@ -19,3 +19,10 @@ Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa vel provident ad
 
 $2a$10$UAz3P/sq0tGp6Go6QHOaleLdY0O8uQv/znpg2ZWbboUcd8GKtMP1W
 $2a$10$UAz3P/sq0tGp6Go6QHOaleLdY0O8uQv/znpg2ZWbboUcd8GKtMP1W
+
+//TODO:
+(1) Some correction in the menu of single.js when there is no login.
+(2) Subpart of point (1): Fixing the aspect ratio of all the cards of the menu.js
+(3) Optional: Adding alerts (wherever felt)
+(4) Optional: Some more designing
+(5) Future: Adding user dashbord for editing user info to a corousel.
