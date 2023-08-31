@@ -2,9 +2,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RegisterImage from "../assets/RegisterImage.jpg";
-import loginImage from "../assets/LoginImage.jpg";
 import axios from "axios";
-import moment from "moment";
 
 const Register = () => {
   // const [userDetails, setUserDetails] = useState({ firstname: "", lastname: "", username: "", email: "", profession: "", img: "RegisterImage.jpg", password: "", cpassword: "" });

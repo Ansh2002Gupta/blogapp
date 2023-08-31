@@ -9,6 +9,7 @@ const Menu = () => {
   const location = useLocation();
   const userid = location.search;
   const slider = document.getElementById("slider");
+  let postDecription;
 
   const prevPress = () => {
     let width = slider.clientWidth;
@@ -37,15 +38,13 @@ const Menu = () => {
 
   const getText = (html) => {
     const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent;
+    postDecription = doc.body.textContent;
   };
 
   return (
     <>
-      <div className="bg-teal-400 mt-3 w-full auto ring-2 ring-offset-2 ring-black text-center text-2xl text-black font-bold">Some More Posts....</div>
-      <div id="slider" className="flex flex-row items-center h-auto bg-slate-200 mt-4 px-3 w-screen h-96" style={{ overflowX: "hidden", scrollBehavior: "smooth" }}>
-        {/* <div className="absolute w-full h-full bg-slate-700 flex flex-col space-x-0"> */}
-        {/* This is my div */}
+      <div className="bg-teal-400 mt-3 w-full ring-2 ring-offset-2 ring-black text-center text-2xl text-black font-bold">Some More Posts....</div>
+      <div id="slider" className="flex flex-row items-center shadow-white shadow-xl mt-4 px-3 w-screen py-2 " style={{ overflowX: "hidden", scrollBehavior: "smooth" }}>
         <div className="absolute flex items-center w-fit h-auto">
           <button className="bg-slate-100 w-20 h-20 p-2 rounded-full bg-teal-400 opacity-50 hover:ring-4 hover:ring-inset hover:ring-teal-600" onClick={prevPress}>
             <p className="text-2xl text-bold text-white">&lt;</p>
@@ -56,14 +55,13 @@ const Menu = () => {
             <p className="text-2xl text-bold text-white">&gt;</p>
           </button>
         </div>
-        {/* </div> */}
         {posts.map((post) => (
-          <div className="z-1 flex min-w-[25%] md:min-w-[20%] flex-col justify-around items-center bg-teal-50 shadow-2xl rounded-lg p-3" key={post.id}>
+          <div className={`z-1 flex min-w-[25%] md:min-w-[20%] max-w-[20%] flex-col justify-around items-center bg-teal-50 shadow-2xl rounded-lg p-3`} key={post.id}>
             <h1 className="text-xs md:text-lg w-full text-center shadow-lg font-bold bg-teal-300 mb-3">{post.title.length > 17 ? post.title.substring(0, 10) + "..." : post.title}</h1>
             <p className="flex flex-col items-center text-xs italic md:text-sm mb-1 md:mb-4">
               <img className="shadow-lg mb-3 w-[95%] h-36 md:h-40 bg-slate-300" src={`/uploads/${post.img}`} alt="blogImage" />
-              {(post.description = getText(post.description))}
-              {post.description.length > 200 ? post.description.substring(0, 201) + "..." : post.description}
+              {getText(post.description)}
+              {postDecription.length > 200 ? postDecription.substring(0, 201) + "..." : postDecription + " ".repeat(200 - postDecription.length)}
             </p>
             <Link className="mt-5 w-full py-2 px-1 rounded-lg bg-teal-300 text-center hover:ring-2 hover:ring-teal-600 cursor-pointer" to={`/post/${post.id}/?userid=${post.userid}`}>
               Read More

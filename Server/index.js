@@ -1,14 +1,13 @@
 import express from "express";
-import userRoutes from "./routes/user.js";
 import postRoutes from "./routes/post.js";
 import authRoutes from "./routes/auth.js";
 import cors from "cors";
-import cookieParser from "cookie-parser";
+// import cookieParser from "cookie-parser";
 import multer from "multer";
 
 const app = express();
 app.use(express.json()); //this is required to send any data to the database.
-app.use(cookieParser());
+// app.use(cookieParser());
 
 const corsOptions = {
   origin: "http://localhost:5173",
@@ -18,7 +17,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 
 const storage = multer.diskStorage({

@@ -100,7 +100,7 @@ const Write = () => {
         {/* Section: Future Footer */}
 
         <div className="flex flex-row bg-teal-400 justify-center w-4/5 py-20 border-2 border-black">
-          <h2 className="text-4xl font-bold bg-teal-400 rounded-full border-8 border-solid border-teal-200 p-3 mr-2">BlogApp</h2>
+          <h2 className="text-4xl font-bold bg-teal-400 rounded-full border-8 border-solid border-teal-200 p-3 mr-2">MeMoir</h2>
           <h2 className="flex items-center italic text-bold text-lg text-teal-800">Made with love from Ansh.</h2>
         </div>
 
@@ -160,13 +160,13 @@ const Write = () => {
             <span className="underline mt-2 text-sm italic">Author: </span>
             <h4 className="text-sm">{user.firstname + " " + user.lastname}</h4>
             <span className="underline mt-2 text-sm italic">Edited: </span>
-            <h4 className="text-sm">{user.date}</h4>
+            <h4 className="text-sm">{moment(user.date).toString().substring(0, 24)}</h4>
             <span className="underline mt-2 text-sm italic">Email: </span>
-            <h4 className="text-sm">{user.email}</h4>
+            <h4 className="text-sm">{user.email.length == 0 ? "<Email unavailable>" : user.email}</h4>
             <span className="underline mt-2 text-sm italic">Profession: </span>
-            <h4 className="text-sm">{user.profession}</h4>
+            <h4 className="text-sm">{user.profession.length == 0 ? "<profession unavailable>" : user.profession}</h4>
             <span className="underline mt-2 text-sm italic">Bio: </span>
-            <h4 className="text-sm text-center px-2">{user.userBio}</h4>
+            <h4 className="text-sm text-center px-2">{user.userBio.length == 0 ? "<Bio unavailable>" : user.userBio}</h4>
           </div>
         </div>
 
