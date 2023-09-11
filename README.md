@@ -13,8 +13,8 @@ This repository contains a versatile multi-user web application name ***Memoir**
 # Architectural Design
 **Webpages and components** <br>
 All the webpages and components have been made with *ReactJs, JavaScript, HTML, Tailwind CSS.* <br>
-<br> **Communication between Server and CLient** <br>
-A *Rest Api* has been created to act as an interface in transfering the information from client to server and vice-versa. The database administrator used in MySql Workbench.<br>
+<br> **Communication between Server and Client** <br>
+A *Rest Api* has been created to act as an interface in transfering the information from client to server and vice-versa. The database administrator used is MySql Workbench.<br>
 <br> **User Authentication System** <br>
 The signIn and signUp pages provide the user authentication system through *Json Web Token*. It is used to generate the authentication token which is used to authorize the user to enter into the website and for various other task like to update or delete a post only if it belongs to him.<br>
 <br> **Data Storage** <br>
