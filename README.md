@@ -39,3 +39,12 @@ All the information related to the user is getting stored in the MySql database.
 </ul>
 
 # Screenshots
+![Memoir1](https://github.com/Ansh2002Gupta/blogapp/assets/84438495/420301d1-1a37-4986-beb8-fa3c9025991a)
+![Memoir2](https://github.com/Ansh2002Gupta/blogapp/assets/84438495/804900b7-2270-4e92-86c1-abcd4f41210b)
+![Memoir3](https://github.com/Ansh2002Gupta/blogapp/assets/84438495/6b6d0b25-1ea8-4918-8184-13fbd43c0279)
+![Memoir4](https://github.com/Ansh2002Gupta/blogapp/assets/84438495/f814efe9-634b-4bdf-b140-861c83ae281a)
+![Memoir5](https://github.com/Ansh2002Gupta/blogapp/assets/84438495/a7b768e4-cc58-4fd3-94f2-464650d3a95a)
+![Memoir7](https://github.com/Ansh2002Gupta/blogapp/assets/84438495/0e277ba4-7040-4b46-b1b8-49f715161ae2)
+![Memoir8](https://github.com/Ansh2002Gupta/blogapp/assets/84438495/effd8bdd-bd36-4f52-b47f-66e58aface51)
+![Memoir9](https://github.com/Ansh2002Gupta/blogapp/assets/84438495/e3c36e7b-bc9d-4c44-b8b8-76c28cfc5842)
+![Memoir10](https://github.com/Ansh2002Gupta/blogapp/assets/84438495/1e27d4cd-5202-4a38-ae11-ec632bbeb2c8)
